@@ -1,0 +1,14 @@
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\bin\Debug\net6.0\MyTasksDataBase.deps.json
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\bin\Debug\net6.0\MyTasksDataBase.runtimeconfig.json
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\bin\Debug\net6.0\MyTasksDataBase.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\bin\Debug\net6.0\MyTasksDataBase.pdb
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.csproj.AssemblyReference.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.AssemblyInfoInputs.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.AssemblyInfo.cs
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.csproj.CoreCompileInputs.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\refint\MyTasksDataBase.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.pdb
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\MyTasksDataBase.genruntimeconfig.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasksDataBase\obj\Debug\net6.0\ref\MyTasksDataBase.dll

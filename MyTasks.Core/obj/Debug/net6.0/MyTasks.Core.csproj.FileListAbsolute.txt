@@ -1,0 +1,15 @@
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.csproj.AssemblyReference.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.AssemblyInfoInputs.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.AssemblyInfo.cs
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.csproj.CoreCompileInputs.cache
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\bin\Debug\net6.0\MyTasks.Core.deps.json
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\bin\Debug\net6.0\MyTasks.Core.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\bin\Debug\net6.0\MyTasks.Core.pdb
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\bin\Debug\net6.0\MyTasksDataBase.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\bin\Debug\net6.0\MyTasksDataBase.pdb
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.csproj.CopyComplete
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\refint\MyTasks.Core.dll
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\MyTasks.Core.pdb
+C:\Users\Mikhail\source\repos\MyTasks\MyTasks.Core\obj\Debug\net6.0\ref\MyTasks.Core.dll
