@@ -11,9 +11,9 @@ namespace MyTasksTest
     public class TaskControllerTests
     {
         private MyTasksController _myTasksController;
-        private Mock<IMyTaskService> _myTaskServiceMock; // моки- підставляються замість інтерфейсів і можуть передавати "фейкові" дані в реалізації інтерфейсів.
+        private Mock<IMyTaskService> _myTaskServiceMock;
 
-        [SetUp] // Частина коду яка вiдбувається перед запуском тестів
+        [SetUp]
         public void SetUp()
         {
             _myTaskServiceMock = new Mock<IMyTaskService>();
@@ -29,11 +29,11 @@ namespace MyTasksTest
                 new TaskModel()
 
             };
-            //Arrange - тут створюються всі необхідні фейкові дані що звязані з тестуємим методом
+            //Arrange
             _myTaskServiceMock.Setup(x => x.GetAllTasksAsync()).ReturnsAsync(list);
-            //Act - тут ми викликаємо сам метод який проходить перевідку
+            //Act
             var result = await _myTasksController.GetAllTasksAsync();
-            //Assert - тут перевіряємо чи пройшов метод по необхідним нам критеріям
+            //Assert
             Assert.IsInstanceOf<OkObjectResult>(result);
         }
 
@@ -84,7 +84,7 @@ namespace MyTasksTest
         {
             TaskModel task = new();
 
-            //Arrange - тут створюються фейкові дані
+            //Arrange
             _myTaskServiceMock.Setup(x => x.CreateTaskAsync(task));
             //Act
             await _myTasksController.CreateTaskAsync(task);
