@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Query;
 using Moq;
+using MyTasks.Core.DtoModels;
 using MyTasks.Core.Services.Realizations.MyTask;
 using MyTasksDataBase.Models;
 using MyTasksDataBase.Repositories.Interfaces.Base;
-using NUnit;
 using NUnit.Framework;
 using System.Linq.Expressions;
 
@@ -12,15 +12,17 @@ namespace MyTasksTest
     [TestFixture]
     public class TaskServiceTests
     {
-        private MyTaskService _myTaskService;
-        private Mock<IRepositoryWrapper> _repositoryWrapperMock; // моки- підставляються замість інтерфейсів і можуть передавати "фейкові" дані в реалізації інтерфейсів.
+        private TaskService _myTaskService;
+        private Mock<IRepositoryWrapper> _repositoryWrapperMock;
 
-        [SetUp] // Частина коду яка вiдбувається перед запуском тестів
+
+        [SetUp]
         public void SetUp()
         {
             _repositoryWrapperMock = new Mock<IRepositoryWrapper>();
-            _myTaskService = new MyTaskService(_repositoryWrapperMock.Object);
+            _myTaskService = new TaskService(_repositoryWrapperMock.Object);
         }
+
         [Test]
         public async Task GetAllTasks_ReturnsList_Valid()
         {
@@ -30,37 +32,36 @@ namespace MyTasksTest
                 new TaskModel(),
                 new TaskModel()
 
-
             };
-            //Arrange - тут створюються всі необхідні фейкові дані що звязані з тестуємим методом
+            //Arrange 
             _repositoryWrapperMock.Setup(x =>
-            x.MyTaskRepository.GetAllAsync(
+            x.TaskRepository.GetAllAsync(
                 It.IsAny<Expression<Func<TaskModel, bool>>>(),
                 It.IsAny<Func<IQueryable<TaskModel>, IIncludableQueryable<TaskModel, object>>>()
                 )).ReturnsAsync(list);
 
-            //Act - тут ми викликаємо сам метод який проходить перевідку
+            //Act 
             var result = await _myTaskService.GetAllTasksAsync();
 
-            //Assert - тут перевіряємо чи пройшов метод по необхідним нам критеріям
+            //Assert 
             Assert.AreEqual(3, result.Count());
 
         }
 
         [Test]
-        public async Task DeleteTask_ReturnsVoid_Valid()
+        public async Task DeleteTaskAsync_ReturnsVoid_Valid()
         {
             TaskModel task1 = new();
             int id = 99999;
 
             //Arrange 
-            _repositoryWrapperMock.Setup(x => x.MyTaskRepository.Delete(task1));
+            _repositoryWrapperMock.Setup(x => x.TaskRepository.Delete(task1));
 
             //Act
             await _myTaskService.DeleteTaskAsync(id);
 
             //Assert
-            _repositoryWrapperMock.Verify(r => r.MyTaskRepository.Delete(It.IsAny<TaskModel>()), Times.Once);
+            _repositoryWrapperMock.Verify(r => r.TaskRepository.Delete(It.IsAny<TaskModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
         [Test]
@@ -70,46 +71,69 @@ namespace MyTasksTest
             int id = 99999;
 
             //Arrange
-            _repositoryWrapperMock.Setup(x => x.MyTaskRepository.GetFisrtOrDefaultAsync(
+            _repositoryWrapperMock.Setup(x => x.TaskRepository.GetFisrtOrDefaultAsync(
                 It.IsAny<Expression<Func<TaskModel, bool>>>(),
                 It.IsAny<Func<IQueryable<TaskModel>, IIncludableQueryable<TaskModel, object>>>()
                 )).ReturnsAsync(task);
 
             //Act
-            var x = await _myTaskService.GetTaskAsync(id);
+            var result = await _myTaskService.GetTaskByIdAsync(id);
 
             //Assert
-            Assert.IsInstanceOf<TaskModel>(x);
+            Assert.IsInstanceOf<TaskModel>(result);
         }
         [Test]
         public async Task EditTaskAsync_ReturnsVoid_Valid()
         {
+
             TaskModel task = new();
-            int id = 99999;
+            TaskModelDto taskDto = new();
+            ListOfTasksModel list = new();
+            StatusModel status = new();
 
             //Arrange 
-            _repositoryWrapperMock.Setup(x => x.MyTaskRepository.Update(task));
+            _repositoryWrapperMock.Setup(x => x.TaskRepository.Update(task));
+            _repositoryWrapperMock.Setup(y => y.ListOfTasksRepository.GetFisrtOrDefaultAsync(
+                It.IsAny<Expression<Func<ListOfTasksModel, bool>>>(),
+                It.IsAny<Func<IQueryable<ListOfTasksModel>, IIncludableQueryable<ListOfTasksModel, object>>>()
+                )).ReturnsAsync(list);
+            _repositoryWrapperMock.Setup(z => z.StatusRepository.GetFisrtOrDefaultAsync(
+                It.IsAny<Expression<Func<StatusModel, bool>>>(),
+                It.IsAny<Func<IQueryable<StatusModel>, IIncludableQueryable<StatusModel, object>>>()
+                )).ReturnsAsync(status);
+
             //Act
-            await _myTaskService.EditTaskAsync(task);
+            await _myTaskService.EditTaskAsync(taskDto);
 
             //Assert
-            _repositoryWrapperMock.Verify(r => r.MyTaskRepository.Update(It.IsAny<TaskModel>()), Times.Once);
+            _repositoryWrapperMock.Verify(r => r.TaskRepository.Update(It.IsAny<TaskModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
         [Test]
         public async Task CreateTaskAsync_ReturnsVoid_Valid()
         {
             TaskModel task = new();
-            int id = 99999;
+            TaskModelDto taskDto = new();
+            ListOfTasksModel list = new();
+            StatusModel status = new();
 
-            //Arrange - тут створюються фейкові дані
-            _repositoryWrapperMock.Setup(x => x.MyTaskRepository.Create(task));
+            //Arrange
+            _repositoryWrapperMock.Setup(x => x.TaskRepository.Create(task));
+            _repositoryWrapperMock.Setup(y => y.ListOfTasksRepository.GetFisrtOrDefaultAsync(
+                It.IsAny<Expression<Func<ListOfTasksModel, bool>>>(),
+                It.IsAny<Func<IQueryable<ListOfTasksModel>, IIncludableQueryable<ListOfTasksModel, object>>>()
+                )).ReturnsAsync(list);
+            _repositoryWrapperMock.Setup(z => z.StatusRepository.GetFisrtOrDefaultAsync(
+                It.IsAny<Expression<Func<StatusModel, bool>>>(),
+                It.IsAny<Func<IQueryable<StatusModel>, IIncludableQueryable<StatusModel, object>>>()
+                )).ReturnsAsync(status);
             //Act
-            await _myTaskService.CreateTaskAsync(task);
+            await _myTaskService.CreateTaskAsync(taskDto);
 
             //Assert
-            _repositoryWrapperMock.Verify(r => r.MyTaskRepository.Create(It.IsAny<TaskModel>()), Times.Once);
+            _repositoryWrapperMock.Verify(r => r.TaskRepository.Create(It.IsAny<TaskModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
+
     }
 }

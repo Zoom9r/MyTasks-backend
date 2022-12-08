@@ -5,7 +5,9 @@ namespace MyTasksDataBase
 {
     public class MyTasksDBContext : DbContext
     {
-        public DbSet<TaskModel> Task { get; set; }
+        public DbSet<TaskModel> MyTasks { get; set; }
+        public DbSet<StatusModel> StatusModels { get; set; }
+        public DbSet<ListOfTasksModel> ListOfTasksModels { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {

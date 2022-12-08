@@ -1,5 +1,9 @@
+using MyTasks.Core.Services.Interfaces.ListOfTasks;
 using MyTasks.Core.Services.Interfaces.MyTask;
+using MyTasks.Core.Services.Interfaces.StatusType;
+using MyTasks.Core.Services.Realizations.ListOfTasks;
 using MyTasks.Core.Services.Realizations.MyTask;
+using MyTasks.Core.Services.Realizations.Status;
 using MyTasksDataBase;
 using MyTasksDataBase.Repositories.Interfaces.Base;
 using MyTasksDataBase.Repositories.Realizations.Base;
@@ -11,21 +15,28 @@ builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<MyTasksDBContext>();
-builder.Services.AddScoped<IRepositoryWrapper,RepositoryWrapper>();
+builder.Services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
 
-builder.Services.AddTransient<IMyTaskService,MyTaskService>();
+builder.Services.AddTransient<ITaskService, TaskService>();
+builder.Services.AddTransient<IListOfTasksService, ListOfTasksService>();
+builder.Services.AddTransient<IStatusService, StatusService>();
 
-builder.Services.AddCors(options=>
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
+builder.Services.AddCors(options =>
      {
-    options.AddPolicy("Notespolicy",
-        builder =>
-        {
+         options.AddPolicy("Notespolicy",
+             builder =>
+             {
 
-            builder.WithOrigins("*")
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-        });
-}
+                 builder.WithOrigins("*")
+                         .AllowAnyHeader()
+                         .AllowAnyMethod();
+             });
+     }
     );
 
 var app = builder.Build();
@@ -50,7 +61,7 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.MapControllerRoute(
-    name:"default",
-    pattern:"{controller=MyTask}");
+    name: "default",
+    pattern: "{controller=Tasks}");
 
 app.Run();

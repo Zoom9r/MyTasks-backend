@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasks.Core", "MyTasks.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyTasksDataBase", "MyTasksDataBase\MyTasksDataBase.csproj", "{C4DFF06E-6C71-4334-9FDB-F6CBBD2B003E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTasksTest", "MyTasksTest\MyTasksTest.csproj", "{33D7F086-8985-45C1-A211-F952DEB39252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTest", "MyTasksTest\TaskTest.csproj", "{33D7F086-8985-45C1-A211-F952DEB39252}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

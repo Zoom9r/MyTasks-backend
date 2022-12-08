@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using MyTasks.Controllers;
+using MyTasks.Core.DtoModels;
 using MyTasks.Core.Services.Interfaces.MyTask;
 using MyTasksDataBase.Models;
 using NUnit.Framework;
@@ -10,15 +11,16 @@ namespace MyTasksTest
     [TestFixture]
     public class TaskControllerTests
     {
-        private MyTasksController _myTasksController;
-        private Mock<IMyTaskService> _myTaskServiceMock;
+        private TasksController _tasksController;
+        private Mock<ITaskService> _taskServiceMock;
 
         [SetUp]
         public void SetUp()
         {
-            _myTaskServiceMock = new Mock<IMyTaskService>();
-            _myTasksController = new MyTasksController(_myTaskServiceMock.Object);
+            _taskServiceMock = new Mock<ITaskService>();
+            _tasksController = new TasksController(_taskServiceMock.Object);
         }
+
         [Test]
         public async Task GetAllTasksAsync_ReturnsList_Valid()
         {
@@ -30,9 +32,9 @@ namespace MyTasksTest
 
             };
             //Arrange
-            _myTaskServiceMock.Setup(x => x.GetAllTasksAsync()).ReturnsAsync(list);
+            _taskServiceMock.Setup(x => x.GetAllTasksAsync()).ReturnsAsync(list);
             //Act
-            var result = await _myTasksController.GetAllTasksAsync();
+            var result = await _tasksController.GetAllTasksAsync();
             //Assert
             Assert.IsInstanceOf<OkObjectResult>(result);
         }
@@ -43,54 +45,57 @@ namespace MyTasksTest
             int id = 99999;
 
             //Arrange 
-            _myTaskServiceMock.Setup(x => x.DeleteTaskAsync(id));
+            _taskServiceMock.Setup(x => x.DeleteTaskAsync(id));
 
             //Act
-            await _myTasksController.DeleteTaskAsync(id);
+            await _tasksController.DeleteTaskAsync(id);
 
             //Assert
-            _myTaskServiceMock.Verify(r => r.DeleteTaskAsync(It.IsAny<int>()), Times.Once);
-
+            _taskServiceMock.Verify(r => r.DeleteTaskAsync(It.IsAny<int>()), Times.Once);
         }
+
         [Test]
         public async Task GetTaskAsync_ReturnsTaskModel_Valid()
         {
             int id = 99999;
 
             //Arrange
-            _myTaskServiceMock.Setup(x => x.GetTaskAsync(id));
+            _taskServiceMock.Setup(x => x.GetTaskByIdAsync(id));
 
             //Act
-            var x = await _myTasksController.GetTaskAsync(id);
+            var x = await _tasksController.GetTaskAsync(id);
 
             //Assert
             Assert.IsInstanceOf<OkObjectResult>(x);
         }
+
         [Test]
         public async Task EditTaskAsync_ReturnsVoid_Valid()
         {
-            TaskModel task = new();
+            TaskModelDto task = new();
 
             //Arrange 
-            _myTaskServiceMock.Setup(x => x.EditTaskAsync(task));
+            _taskServiceMock.Setup(x => x.EditTaskAsync(task));
             //Act
-            await _myTasksController.EditTaskAsync(task);
+            await _tasksController.EditTaskAsync(task);
 
             //Assert
-            _myTaskServiceMock.Verify(r => r.EditTaskAsync(It.IsAny<TaskModel>()), Times.Once);
+            _taskServiceMock.Verify(r => r.EditTaskAsync(It.IsAny<TaskModelDto>()), Times.Once);
         }
+
         [Test]
         public async Task CreateTaskAsync_ReturnsVoid_Valid()
         {
-            TaskModel task = new();
+            TaskModelDto task = new();
 
             //Arrange
-            _myTaskServiceMock.Setup(x => x.CreateTaskAsync(task));
+            _taskServiceMock.Setup(x => x.CreateTaskAsync(task));
             //Act
-            await _myTasksController.CreateTaskAsync(task);
+            await _tasksController.CreateTaskAsync(task);
 
             //Assert
-            _myTaskServiceMock.Verify(r => r.CreateTaskAsync(It.IsAny<TaskModel>()), Times.Once);
+            _taskServiceMock.Verify(r => r.CreateTaskAsync(It.IsAny<TaskModelDto>()), Times.Once);
         }
+
     }
 }
