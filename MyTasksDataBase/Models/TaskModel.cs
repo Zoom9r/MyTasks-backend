@@ -10,6 +10,5 @@ namespace MyTasksDataBase.Models
         public StatusModel Status { get; set; }
         public int ListOfTasksId { get; set; }
         public ListOfTasksModel ListOfTasks { get; set; }
-
     }
 }

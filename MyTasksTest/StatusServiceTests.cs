@@ -13,7 +13,6 @@ namespace TaskTest
         private StatusService _statusService;
         private Mock<IRepositoryWrapper> _repositoryWrapperMock;
 
-
         [SetUp]
         public void SetUp()
         {
@@ -29,8 +28,8 @@ namespace TaskTest
                 new StatusModel(),
                 new StatusModel(),
                 new StatusModel()
-
             };
+
             //Arrange 
             _repositoryWrapperMock.Setup(x =>
             x.StatusRepository.GetAllAsync(

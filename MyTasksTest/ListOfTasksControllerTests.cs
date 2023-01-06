@@ -28,12 +28,14 @@ namespace TaskTest
                 new ListOfTasksModel(),
                 new ListOfTasksModel(),
                 new ListOfTasksModel()
-
             };
+
             //Arrange
             _listOfTasksServiceMock.Setup(x => x.GetAllListsNamesAndIdAsync()).ReturnsAsync(list);
+
             //Act
             var result = await _listOfTasksController.GetAllListsNamesAndIdAsync();
+
             //Assert
             Assert.IsInstanceOf<OkObjectResult>(result);
         }
@@ -51,7 +53,6 @@ namespace TaskTest
 
             //Assert
             _listOfTasksServiceMock.Verify(r => r.DeleteListAsync(It.IsAny<int>()), Times.Once);
-
         }
 
         [Test]
@@ -67,8 +68,8 @@ namespace TaskTest
 
             //Assert
             Assert.IsNotInstanceOf<OkObjectResult>(result);
-
         }
+
         [Test]
         public async Task EditListAsync_ReturnsVoid_Valid()
         {
@@ -76,6 +77,7 @@ namespace TaskTest
 
             //Arrange 
             _listOfTasksServiceMock.Setup(x => x.EditListOfTasksAsync(list));
+
             //Act
             await _listOfTasksController.EditListAsync(list);
 
@@ -97,6 +99,5 @@ namespace TaskTest
             //Assert
             _listOfTasksServiceMock.Verify(r => r.CreateListofTasksAsync(It.IsAny<ListOfTasksModelDto>()), Times.Once);
         }
-
     }
 }

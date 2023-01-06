@@ -8,7 +8,7 @@ namespace MyTasks.Core.Services.Realizations.ListOfTasks
 {
     public class ListOfTasksService : IListOfTasksService
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
         public ListOfTasksService(IRepositoryWrapper repositoryWrapper)
         {
@@ -30,16 +30,14 @@ namespace MyTasks.Core.Services.Realizations.ListOfTasks
 
         public async Task<List<ListOfTasksModel>> GetAllListsNamesAndIdAsync()
         {
-
             var listsData = await _repositoryWrapper.ListOfTasksRepository.GetAllListsNamesAndIdAsync();
-            return listsData;
 
+            return listsData;
         }
 
         public async Task<ListOfTasksModel> GetListDataByIdAsync(int Id)
         {
             return await _repositoryWrapper.ListOfTasksRepository.GetFisrtOrDefaultAsync(predicate: x => x.Id == Id, include: y => y.Include(i => i.Tasks).Include(j => j.Statuses));
-
         }
 
         public async Task EditListOfTasksAsync(ListOfTasksModelDto listOfTasksModelDto)
@@ -53,10 +51,9 @@ namespace MyTasks.Core.Services.Realizations.ListOfTasks
                 Tasks = list.Tasks,
 
             };
-            _repositoryWrapper.ListOfTasksRepository.Update(editList);
 
+            _repositoryWrapper.ListOfTasksRepository.Update(editList);
             await _repositoryWrapper.SaveAsync();
         }
-
     }
 }

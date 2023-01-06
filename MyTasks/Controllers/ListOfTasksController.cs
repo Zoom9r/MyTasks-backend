@@ -8,8 +8,8 @@ namespace MyTasks.Controllers
     [Route("[controller]")]
     public class ListOfTasksController : ControllerBase
     {
-
         private readonly IListOfTasksService _listOfTasksService;
+
         public ListOfTasksController(IListOfTasksService listOfTasksService)
         {
             _listOfTasksService = listOfTasksService;
@@ -19,6 +19,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> GetAllListsNamesAndIdAsync()
         {
             var listsData = await _listOfTasksService.GetAllListsNamesAndIdAsync();
+
             return Ok(listsData);
         }
 
@@ -50,6 +51,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> EditListAsync([FromBody] ListOfTasksModelDto list)
         {
             await _listOfTasksService.EditListOfTasksAsync(list);
+
             return Ok();
         }
     }

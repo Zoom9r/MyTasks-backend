@@ -6,12 +6,13 @@ namespace MyTasks.Core.Services.Realizations.Status
 {
     public class StatusService : IStatusService
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
         public StatusService(IRepositoryWrapper repositoryWrapper)
         {
             _repositoryWrapper = repositoryWrapper;
         }
+
         public async Task CreateStatusAsync(StatusModelDto statusModelDto)
         {
             var newStatus = new StatusModel { StatusName = statusModelDto.StatusName, ListOfTasksId = statusModelDto.ListOfTasksId };
@@ -38,20 +39,22 @@ namespace MyTasks.Core.Services.Realizations.Status
                 ListOfTasks = list
 
             };
-            _repositoryWrapper.StatusRepository.Update(editStatus);
 
+            _repositoryWrapper.StatusRepository.Update(editStatus);
             await _repositoryWrapper.SaveAsync();
         }
 
         public async Task<IEnumerable<StatusModel>> GetAllStatusesAsync()
         {
             var statuses = await _repositoryWrapper.StatusRepository.GetAllAsync();
+
             return statuses;
         }
 
         public async Task<StatusModel> GetStatusByIdAsync(int statusId)
         {
             var status = await _repositoryWrapper.StatusRepository.GetFisrtOrDefaultAsync(x => x.Id == statusId);
+
             return status;
         }
     }

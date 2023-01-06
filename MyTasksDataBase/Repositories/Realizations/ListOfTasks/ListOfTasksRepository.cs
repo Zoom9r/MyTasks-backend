@@ -3,12 +3,11 @@ using MyTasksDataBase.Models;
 using MyTasksDataBase.Repositories.Interfaces.ListOfTasks;
 using MyTasksDataBase.Repositories.Realizations.Base;
 
-
 namespace MyTasksDataBase.Repositories.Realizations.ListOfTasks
 {
     public class ListOfTasksRepository : RepositoryBase<ListOfTasksModel>, IListOfTasksRepository
     {
-        private MyTasksDBContext myTasksDBContext;
+        private readonly MyTasksDBContext myTasksDBContext;
 
         public ListOfTasksRepository(MyTasksDBContext dBContext)
            : base(dBContext)
@@ -21,6 +20,5 @@ namespace MyTasksDataBase.Repositories.Realizations.ListOfTasks
             var result = await myTasksDBContext.ListOfTasksModels.FromSqlRaw("getListsIdAndName").ToListAsync();
             return result;
         }
-
     }
 }

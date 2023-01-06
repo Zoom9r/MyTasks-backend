@@ -7,9 +7,8 @@ namespace MyTasks.Core.Services.Interfaces.ListOfTasks
     {
         Task<List<ListOfTasksModel>> GetAllListsNamesAndIdAsync();
         Task CreateListofTasksAsync(ListOfTasksModelDto listOfTasksModelDto);
-        Task<ListOfTasksModel> GetListDataByIdAsync(int Id);
+        Task<ListOfTasksModel> GetListDataByIdAsync(int id);
         Task EditListOfTasksAsync(ListOfTasksModelDto listOfTasksModelDto);
-        Task DeleteListAsync(int Id);
-
+        Task DeleteListAsync(int id);
     }
 }

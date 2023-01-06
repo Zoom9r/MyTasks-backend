@@ -10,6 +10,5 @@ namespace MyTasks.Core.Services.Interfaces.MyTask
         Task EditTaskAsync(TaskModelDto taskModelDto);
         Task<IEnumerable<TaskModel>> GetAllTasksAsync();
         Task<TaskModel> GetTaskByIdAsync(int taskId);
-
     }
 }

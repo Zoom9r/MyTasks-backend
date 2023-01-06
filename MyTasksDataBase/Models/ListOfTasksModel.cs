@@ -7,6 +7,5 @@ namespace MyTasksDataBase.Models
         public string ListName { get; set; }
         public List<StatusModel> Statuses { get; set; }
         public List<TaskModel> Tasks { get; set; }
-
     }
 }

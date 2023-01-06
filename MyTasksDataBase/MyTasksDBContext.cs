@@ -13,8 +13,6 @@ namespace MyTasksDataBase
         {
             dbContextOptionsBuilder.UseSqlServer(
                 @"Server=.;Database=MyTasks;Integrated Security=True;");
-
         }
-
     }
 }

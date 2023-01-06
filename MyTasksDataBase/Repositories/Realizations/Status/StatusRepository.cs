@@ -2,7 +2,6 @@
 using MyTasksDataBase.Repositories.Interfaces.StatusType;
 using MyTasksDataBase.Repositories.Realizations.Base;
 
-
 namespace MyTasksDataBase.Repositories.Realizations.Status
 {
     public class StatusRepository : RepositoryBase<StatusModel>, IStatusRepository

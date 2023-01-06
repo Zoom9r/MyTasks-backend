@@ -1,4 +1,5 @@
-﻿namespace MyTasks.Core.DtoModels
+﻿
+namespace MyTasks.Core.DtoModels
 {
     public class TaskModelDto
     {

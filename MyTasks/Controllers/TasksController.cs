@@ -4,12 +4,12 @@ using MyTasks.Core.DtoModels;
 
 namespace MyTasks.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class TasksController : ControllerBase
     {
         private readonly ITaskService _myTaskService;
+
         public TasksController(ITaskService myTaskService)
         {
             _myTaskService = myTaskService;
@@ -19,6 +19,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> GetAllTasksAsync()
         {
             var tasks = await _myTaskService.GetAllTasksAsync();
+
             return Ok(tasks);
         }
 
@@ -32,6 +33,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> CreateTaskAsync(TaskModelDto myTaskModelDto)
         {
             await _myTaskService.CreateTaskAsync(myTaskModelDto);
+
             return Ok();
         }
 
@@ -47,6 +49,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> EditTaskAsync([FromBody] TaskModelDto taskModeldto)
         {
             await _myTaskService.EditTaskAsync(taskModeldto);
+
             return Ok();
         }
     }

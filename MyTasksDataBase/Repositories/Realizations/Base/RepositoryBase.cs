@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Query;
 using MyTasksDataBase.Repositories.Interfaces.Base;
 using System.Linq.Expressions;
 
-
 namespace MyTasksDataBase.Repositories.Realizations.Base
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         protected MyTasksDBContext MyTasksDBContext { get; set; }
+
         public RepositoryBase(MyTasksDBContext context)
         {
             MyTasksDBContext = context;
@@ -36,8 +36,6 @@ namespace MyTasksDataBase.Repositories.Realizations.Base
                 query = include(query);
             }
             return await query.ToListAsync();
-
-
         }
 
         public async Task<T> GetFisrtOrDefaultAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
@@ -58,6 +56,5 @@ namespace MyTasksDataBase.Repositories.Realizations.Base
         {
             MyTasksDBContext.Set<T>().Update(entity);
         }
-
     }
 }

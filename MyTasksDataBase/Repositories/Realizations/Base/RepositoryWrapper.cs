@@ -10,14 +10,16 @@ namespace MyTasksDataBase.Repositories.Realizations.Base
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
-        private MyTasksDBContext _dbContext;
+        private readonly MyTasksDBContext _dbContext;
         private ITaskRepository _taskRepository;
         private IStatusRepository _statusRepository;
         private IListOfTasksRepository _listOfTasksRepository;
+
         public RepositoryWrapper(MyTasksDBContext context)
         {
             _dbContext = context;
         }
+
         public ITaskRepository TaskRepository
         {
             get
@@ -41,7 +43,6 @@ namespace MyTasksDataBase.Repositories.Realizations.Base
                 return _statusRepository;
             }
         }
-
 
         public IListOfTasksRepository ListOfTasksRepository
         {

@@ -1,4 +1,5 @@
-﻿namespace MyTasksDataBase.Models
+﻿
+namespace MyTasksDataBase.Models
 {
     public class StatusModelDto
     {

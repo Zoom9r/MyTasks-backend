@@ -27,12 +27,14 @@ namespace TaskTest
                 new StatusModel(),
                 new StatusModel(),
                 new StatusModel()
-
             };
+
             //Arrange
             _statusServiceMock.Setup(x => x.GetAllStatusesAsync()).ReturnsAsync(statusList);
+
             //Act
             var result = await _statusController.GetAllStatusesAsync();
+
             //Assert
             Assert.IsInstanceOf<OkObjectResult>(result);
         }
@@ -50,7 +52,6 @@ namespace TaskTest
 
             //Assert
             _statusServiceMock.Verify(r => r.DeleteStatusAsync(It.IsAny<int>()), Times.Once);
-
         }
 
         [Test]
@@ -95,6 +96,5 @@ namespace TaskTest
             //Assert
             _statusServiceMock.Verify(r => r.CreateStatusAsync(It.IsAny<StatusModelDto>()), Times.Once);
         }
-
     }
 }

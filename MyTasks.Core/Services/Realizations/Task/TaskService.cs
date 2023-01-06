@@ -16,6 +16,7 @@ namespace MyTasks.Core.Services.Realizations.MyTask
         public async Task<IEnumerable<TaskModel>> GetAllTasksAsync()
         {
             var task = await _repositoryWrapper.TaskRepository.GetAllAsync();
+
             return task;
         }
 
@@ -58,6 +59,5 @@ namespace MyTasks.Core.Services.Realizations.MyTask
         {
             return await _repositoryWrapper.TaskRepository.GetFisrtOrDefaultAsync(x => x.Id == taskId);
         }
-
     }
 }

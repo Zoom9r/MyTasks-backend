@@ -29,12 +29,14 @@ namespace MyTasksTest
                 new TaskModel(),
                 new TaskModel(),
                 new TaskModel()
-
             };
+
             //Arrange
             _taskServiceMock.Setup(x => x.GetAllTasksAsync()).ReturnsAsync(list);
+
             //Act
             var result = await _tasksController.GetAllTasksAsync();
+
             //Assert
             Assert.IsInstanceOf<OkObjectResult>(result);
         }
@@ -76,6 +78,7 @@ namespace MyTasksTest
 
             //Arrange 
             _taskServiceMock.Setup(x => x.EditTaskAsync(task));
+
             //Act
             await _tasksController.EditTaskAsync(task);
 

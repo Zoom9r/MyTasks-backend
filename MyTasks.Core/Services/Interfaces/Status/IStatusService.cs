@@ -9,6 +9,5 @@ namespace MyTasks.Core.Services.Interfaces.StatusType
         Task<StatusModel> GetStatusByIdAsync(int statusId);
         Task EditStatusAsync(StatusModelDto statusModelDto);
         Task DeleteStatusAsync(int statusId);
-
     }
 }

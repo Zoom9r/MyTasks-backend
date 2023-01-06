@@ -15,7 +15,6 @@ namespace MyTasksTest
         private TaskService _myTaskService;
         private Mock<IRepositoryWrapper> _repositoryWrapperMock;
 
-
         [SetUp]
         public void SetUp()
         {
@@ -31,8 +30,8 @@ namespace MyTasksTest
                 new TaskModel(),
                 new TaskModel(),
                 new TaskModel()
-
             };
+
             //Arrange 
             _repositoryWrapperMock.Setup(x =>
             x.TaskRepository.GetAllAsync(
@@ -45,7 +44,6 @@ namespace MyTasksTest
 
             //Assert 
             Assert.AreEqual(3, result.Count());
-
         }
 
         [Test]
@@ -64,6 +62,7 @@ namespace MyTasksTest
             _repositoryWrapperMock.Verify(r => r.TaskRepository.Delete(It.IsAny<TaskModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
+
         [Test]
         public async Task GetTaskAsync_ReturnsTaskModel_Valid()
         {
@@ -82,10 +81,10 @@ namespace MyTasksTest
             //Assert
             Assert.IsInstanceOf<TaskModel>(result);
         }
+
         [Test]
         public async Task EditTaskAsync_ReturnsVoid_Valid()
         {
-
             TaskModel task = new();
             TaskModelDto taskDto = new();
             ListOfTasksModel list = new();
@@ -109,6 +108,7 @@ namespace MyTasksTest
             _repositoryWrapperMock.Verify(r => r.TaskRepository.Update(It.IsAny<TaskModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
+
         [Test]
         public async Task CreateTaskAsync_ReturnsVoid_Valid()
         {
@@ -127,6 +127,7 @@ namespace MyTasksTest
                 It.IsAny<Expression<Func<StatusModel, bool>>>(),
                 It.IsAny<Func<IQueryable<StatusModel>, IIncludableQueryable<StatusModel, object>>>()
                 )).ReturnsAsync(status);
+
             //Act
             await _myTaskService.CreateTaskAsync(taskDto);
 
@@ -134,6 +135,5 @@ namespace MyTasksTest
             _repositoryWrapperMock.Verify(r => r.TaskRepository.Create(It.IsAny<TaskModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
-
     }
 }

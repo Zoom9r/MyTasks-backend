@@ -12,6 +12,5 @@ namespace MyTasksDataBase.Repositories.Interfaces.Base
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
 
         Task<T> GetFisrtOrDefaultAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
-
     }
 }

@@ -20,7 +20,7 @@ namespace TaskTest
             _repositoryWrapperMock = new Mock<IRepositoryWrapper>();
             _listOfTasksService = new ListOfTasksService(_repositoryWrapperMock.Object);
         }
-        // Тести
+   
         [Test]
         public async Task GetAllListsNamesAndIdAsync_ReturnsList_Valid()
         {
@@ -29,8 +29,8 @@ namespace TaskTest
                 new ListOfTasksModel(),
                 new ListOfTasksModel(),
                 new ListOfTasksModel()
-
             };
+
             //Arrange 
             _repositoryWrapperMock.Setup(x =>
             x.ListOfTasksRepository.GetAllListsNamesAndIdAsync()).ReturnsAsync(list);
@@ -40,7 +40,6 @@ namespace TaskTest
 
             //Assert 
             Assert.AreEqual(3, result.Count);
-
         }
 
         [Test]
@@ -82,7 +81,6 @@ namespace TaskTest
         [Test]
         public async Task EditListOfTasksAsync_ReturnsVoid_Valid()
         {
-
             ListOfTasksModel list = new();
             ListOfTasksModelDto listDto = new();
 
@@ -120,6 +118,5 @@ namespace TaskTest
             _repositoryWrapperMock.Verify(r => r.ListOfTasksRepository.Create(It.IsAny<ListOfTasksModel>()), Times.Once);
             _repositoryWrapperMock.Verify(r => r.SaveAsync(), Times.Once);
         }
-
     }
 }

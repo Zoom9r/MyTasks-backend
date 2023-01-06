@@ -8,8 +8,8 @@ namespace MyTasks.Controllers
     [Route("[controller]")]
     public class StatusController : ControllerBase
     {
-
         private readonly IStatusService _statusService;
+
         public StatusController(IStatusService statusService)
         {
             _statusService = statusService;
@@ -19,6 +19,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> GetAllStatusesAsync()
         {
             var statuses = await _statusService.GetAllStatusesAsync();
+
             return Ok(statuses);
         }
 
@@ -26,6 +27,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> GetStatusAsync(int statusId)
         {
             var status = await _statusService.GetStatusByIdAsync(statusId);
+
             return Ok(status);
         }
 
@@ -33,6 +35,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> CreateStatusAsync(StatusModelDto statusModelDto)
         {
             await _statusService.CreateStatusAsync(statusModelDto);
+
             return Ok();
         }
 
@@ -40,6 +43,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> DeleteStatusAsync(int statusId)
         {
             await _statusService.DeleteStatusAsync(statusId);
+
             return Ok();
         }
 
@@ -47,6 +51,7 @@ namespace MyTasks.Controllers
         public async Task<IActionResult> EditStatusAsync([FromBody] StatusModelDto statusModelDto)
         {
             await _statusService.EditStatusAsync(statusModelDto);
+
             return Ok();
         }
     }
